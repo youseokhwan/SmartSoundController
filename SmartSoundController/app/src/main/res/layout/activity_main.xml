@@ -10,8 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="50dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:orientation="vertical">
@@ -20,18 +20,81 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="top"
             android:layout_weight="3"
             android:orientation="vertical">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="SMART" />
+                android:orientation="horizontal">
 
-            <TextView
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/tmontium"
+                    android:text="S"
+                    android:textSize="45dp"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:fontFamily="@font/tmontium"
+                    android:text="MART"
+                    android:textSize="35dp"
+                    android:textColor="#000000" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="SMART CONTROLLER" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/tmontium"
+                    android:text="S"
+                    android:textSize="45dp"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:fontFamily="@font/tmontium"
+                    android:text="OUND "
+                    android:textSize="35dp"
+                    android:textColor="#000000" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/tmontium"
+                    android:text="C"
+                    android:textSize="45dp"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:fontFamily="@font/tmontium"
+                    android:text="ONTROLLER"
+                    android:textSize="35dp"
+                    android:textColor="#000000" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -46,19 +109,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="현재\n미디어 볼륨"/>
-            
+                android:gravity="center_vertical"
+                android:fontFamily="@font/tmonmonsori"
+                android:textSize="20dp"
+                android:text="현재\n미디어 볼륨"
+                android:textColor="#000000" />
+
             <SeekBar
-                android:id="@+id/seekBar1"
+                android:id="@+id/volumeBar"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
+                android:gravity="center"
                 android:max="100"
                 android:progress="30" />
 
         </LinearLayout>
 
-        <!-- 주변 소음, 실시간 dB값 -->
+        <!-- 실시간 소음 및 dB값 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,39 +136,61 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:text="주변 소음" />
-            
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:fontFamily="@font/tmonmonsori"
+                android:textSize="20dp"
+                android:text="실시간 소음"
+                android:textColor="#000000" />
+
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/currentdB"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="75" />
+                android:layout_weight="2"
+                android:gravity="center|right|bottom"
+                android:fontFamily="@font/tmonmonsori"
+                android:textSize="20dp"
+                android:text="75"
+                android:textColor="#000000" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="dB" />
+                android:layout_weight="2"
+                android:gravity="center|bottom"
+                android:fontFamily="@font/tmonmonsori"
+                android:textSize="20dp"
+                android:text="dB"
+                android:textColor="#000000" />
 
         </LinearLayout>
 
         <!-- 설정 버튼 -->
         <Button
-            android:id="@+id/btn1"
+            android:id="@+id/settingBtn"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="설 정"/>
+            android:background="@drawable/btn_bg"
+            android:fontFamily="@font/tmonmonsori"
+            android:textSize="20dp"
+            android:text="설    정"/>
 
         <!-- 종료 버튼 -->
         <Button
-            android:id="@+id/btn2"
+            android:id="@+id/exitBtn"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="45dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="종 료"/>
+            android:background="@drawable/btn_bg"
+            android:fontFamily="@font/tmonmonsori"
+            android:textSize="20dp"
+            android:text="종    료"/>
 
     </LinearLayout>
 

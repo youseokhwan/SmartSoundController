@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:orientation="vertical">
+
+        <!-- Title -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/tmontium"
+                android:text="S"
+                android:textSize="45dp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:fontFamily="@font/tmontium"
+                android:text="ETTING"
+                android:textSize="35dp"
+                android:textColor="#000000" />
+
+        </LinearLayout>
+
+        <!-- 기준 dB -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="35dp"
+                android:gravity="center"
+                android:fontFamily="@font/tmonmonsori"
+                android:textSize="20dp"
+                android:text="기준 dB"
+                android:textColor="#000000" />
+
+            <EditText
+                android:id="@+id/stdDbEdt"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:fontFamily="@font/tmonmonsori"
+                android:textSize="20dp"
+                android:text="75"
+                android:textColor="#000000" />
+
+        </LinearLayout>
+
+        <!-- 기준 볼륨 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/tmonmonsori"
+                android:textSize="20dp"
+                android:text="기준\n미디어 볼륨"
+                android:textColor="#000000" />
+
+            <SeekBar
+                android:id="@+id/stdVolumeBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:max="100"
+                android:progress="30" />
+
+        </LinearLayout>
+
+        <!-- 설명 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tmonmonsori"
+            android:textSize="13dp"
+            android:text="가장 조용한 곳에서의 dB과 볼륨을 설정해주세요" />
+
+        <!-- 단위 dB 설정 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/stdUnitEdt"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:fontFamily="@font/tmonmonsori"
+                android:textSize="20dp"
+                android:text="5"
+                android:textColor="#000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:layout_marginRight="20dp"
+                android:gravity="center|left"
+                android:fontFamily="@font/tmonmonsori"
+                android:textSize="20dp"
+                android:text="dB마다 볼륨 증가"
+                android:textColor="#000000" />
+
+
+        </LinearLayout>
+
+        <!-- 체크 박스 -->
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-5dp"
+            android:text="볼륨 변경 시 진동"
+            android:fontFamily="@font/tmonmonsori"
+            android:textSize="20dp"
+            android:textColor="#000000" />
+
+        <!-- 적용 버튼 -->
+        <Button
+            android:id="@+id/settingBtn"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="45dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_bg"
+            android:fontFamily="@font/tmonmonsori"
+            android:textSize="20dp"
+            android:text="적    용"/>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
