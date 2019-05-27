@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
         android:layout_marginBottom="50dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
@@ -17,11 +17,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:layout_weight="6"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:gravity="bottom"
                 android:fontFamily="@font/tmontium"
                 android:text="S"
                 android:textSize="45dp"
@@ -42,6 +45,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
@@ -58,11 +62,11 @@
                 android:id="@+id/stdDbEdt"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:fontFamily="@font/tmonmonsori"
-                android:textSize="20dp"
+                android:gravity="center"
                 android:text="75"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:textSize="20dp" />
 
         </LinearLayout>
 
@@ -70,11 +74,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:gravity="center|left"
                 android:fontFamily="@font/tmonmonsori"
                 android:textSize="20dp"
                 android:text="기준\n미디어 볼륨"
@@ -94,6 +100,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="30dp"
             android:fontFamily="@font/tmonmonsori"
             android:textSize="13dp"
             android:text="가장 조용한 곳에서의 dB과 볼륨을 설정해주세요" />
@@ -102,6 +110,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <EditText
@@ -131,9 +141,12 @@
 
         <!-- 체크 박스 -->
         <CheckBox
+            android:id="@+id/vibCheckBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_marginLeft="-5dp"
+            android:layout_marginBottom="40dp"
             android:text="볼륨 변경 시 진동"
             android:fontFamily="@font/tmonmonsori"
             android:textSize="20dp"
@@ -141,11 +154,12 @@
 
         <!-- 적용 버튼 -->
         <Button
-            android:id="@+id/settingBtn"
+            android:id="@+id/applyBtn"
             android:layout_marginTop="0dp"
-            android:layout_marginBottom="45dp"
+            android:layout_marginBottom="35dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:background="@drawable/btn_bg"
             android:fontFamily="@font/tmonmonsori"
             android:textSize="20dp"
