@@ -83,7 +83,7 @@
                 android:gravity="center|left"
                 android:fontFamily="@font/tmonmonsori"
                 android:textSize="20dp"
-                android:text="기준\n미디어 볼륨"
+                android:text="내 최소\n미디어 볼륨"
                 android:textColor="#000000" />
 
             <SeekBar
@@ -101,10 +101,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="15dp"
             android:fontFamily="@font/tmonmonsori"
             android:textSize="13dp"
-            android:text="가장 조용한 곳에서의 dB과 볼륨을 설정해주세요" />
+            android:text="가장 조용한 곳에서의 dB과 볼륨을 설정해주세요
+                        \n내 최소 볼륨보다 낮아지지는 않습니다" />
 
         <!-- 단위 dB 설정 -->
         <LinearLayout
