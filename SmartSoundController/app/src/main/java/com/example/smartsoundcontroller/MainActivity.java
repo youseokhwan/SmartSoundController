@@ -116,10 +116,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         bt.setOnDataReceivedListener(new BluetoothSPP.OnDataReceivedListener() { //데이터 수신
             public void onDataReceived(byte[] data, String message) {
                 // Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-                double temp = 20 * Math.log10(Integer.parseInt(message));
-                temp = Math.round(temp * 100) / 100.0;
+                int temp = (int)(20 * Math.log10(Integer.parseInt(message)));
 
-                currentdB.setText(Double.toString(temp));
+                currentdB.setText(Integer.toString(temp));
             }
         });
 
