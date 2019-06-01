@@ -40,12 +40,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     public SharedPreferences appData;
     private Thread soundManager;
-    private BluetoothSPP bt;
+    private BluetoothSPP bluetoothSPP;
     public Vibrator vibrator;
 
-    SeekBar volumeBar;
-    TextView currentdB;
-    Button settingBtn, exitBtn;
+    SeekBar currentVolumeSeekBar;
+    TextView currentDecibelTextView;
+    Button settingButton, exitButton;
     AudioManager audioManager;
 
     @Override
@@ -55,7 +55,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         appData = getSharedPreferences("appData", MODE_PRIVATE);
         vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
-        bt = new BluetoothSPP(this);
+        bluetoothSPP = new BluetoothSPP(this);
         soundManager = new Thread(new Runnable() {
             final Handler threadHandler = new Handler();
 
@@ -71,7 +71,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         threadHandler.post(new Runnable() {
                             @Override
                             public void run() {
-                                int distancedB = Integer.parseInt(currentdB.getText().toString())
+                                int distancedB = Integer.parseInt(currentDecibelTextView.getText().toString())
                                         - appData.getInt("STD_DB", 20);
 
                                 if(distancedB < 0)
@@ -80,8 +80,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                 int divideUnit = distancedB / appData.getInt("STD_UNIT", 5);
 
                                 // 변경할 값이랑 현재 값이랑 다르면 실행
-                                if(volumeBar.getProgress() != appData.getInt("STD_VOLUME", 3) + divideUnit) {
-                                    volumeBar.setProgress(appData.getInt("STD_VOLUME", 3) + divideUnit);
+                                if(currentVolumeSeekBar.getProgress() != appData.getInt("STD_VOLUME", 3) + divideUnit) {
+                                    currentVolumeSeekBar.setProgress(appData.getInt("STD_VOLUME", 3) + divideUnit);
 
                                     if(appData.getBoolean("VIB_CHECK", false)) {
                                         vibrator.vibrate(500);
@@ -98,13 +98,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
         });
         soundManager.start();
 
-        volumeBar = (SeekBar)findViewById(R.id.volumeBar);
-        currentdB = (TextView)findViewById(R.id.currentdB);
-        settingBtn = (Button)findViewById(R.id.settingBtn);
-        exitBtn = (Button)findViewById(R.id.exitBtn);
+        currentVolumeSeekBar = (SeekBar)findViewById(R.id.currentVolumeSeekBar);
+        currentDecibelTextView = (TextView)findViewById(R.id.currentDecibelTextView);
+        settingButton = (Button)findViewById(R.id.settingButton);
+        exitButton = (Button)findViewById(R.id.exitButton);
 
         // 블루투스 사용 불가할 때 메시지 출력
-        if(!bt.isBluetoothAvailable()) {
+        if(!bluetoothSPP.isBluetoothAvailable()) {
             Toast.makeText(getApplicationContext(), "블루투스 사용 불가", Toast.LENGTH_SHORT).show();
         }
 
@@ -113,27 +113,27 @@ public class MainActivity extends Activity implements View.OnClickListener {
         startActivityForResult(intent, BluetoothState.REQUEST_CONNECT_DEVICE);
 
         // 데이터 수신
-        bt.setOnDataReceivedListener(new BluetoothSPP.OnDataReceivedListener() { //데이터 수신
+        bluetoothSPP.setOnDataReceivedListener(new BluetoothSPP.OnDataReceivedListener() { //데이터 수신
             public void onDataReceived(byte[] data, String message) {
                 // Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
                 int temp = (int)(20 * Math.log10(Integer.parseInt(message)));
 
-                currentdB.setText(Integer.toString(temp));
+                currentDecibelTextView.setText(Integer.toString(temp));
             }
         });
 
         // 설정, 종료 버튼 리스너
-        settingBtn.setOnClickListener((View.OnClickListener)this);
-        exitBtn.setOnClickListener((View.OnClickListener)this);
+        settingButton.setOnClickListener((View.OnClickListener)this);
+        exitButton.setOnClickListener((View.OnClickListener)this);
 
         // 기기의 현재 미디어 볼륨 정보를 가져와서 volumeBar에 적용
         audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
-        currentdB.setText("0");
-        volumeBar.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
-        volumeBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
+        currentDecibelTextView.setText("0");
+        currentVolumeSeekBar.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
+        currentVolumeSeekBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
 
         // volumeBar의 progress값 변경 이벤트
-        volumeBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        currentVolumeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onStartTrackingTouch(SeekBar seekBar) {
                 // empty
             }
@@ -155,15 +155,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onStart();
 
         // 블루투스 disabled면 실행
-        if(!bt.isBluetoothEnabled()) {
+        if(!bluetoothSPP.isBluetoothEnabled()) {
             Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(intent, BluetoothState.REQUEST_ENABLE_BT);
         }
         else {
-            if(!bt.isServiceAvailable()) {
-                bt.setupService();
-                bt.startService(BluetoothState.DEVICE_OTHER);
-                bt.send("Text", true);
+            if(!bluetoothSPP.isServiceAvailable()) {
+                bluetoothSPP.setupService();
+                bluetoothSPP.startService(BluetoothState.DEVICE_OTHER);
+                bluetoothSPP.send("Text", true);
             }
         }
     }
@@ -171,14 +171,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == BluetoothState.REQUEST_CONNECT_DEVICE) {
             if(resultCode == Activity.RESULT_OK) {
-                bt.connect(data);
+                bluetoothSPP.connect(data);
             }
         }
         else if(requestCode == BluetoothState.REQUEST_ENABLE_BT) {
             if(resultCode == Activity.RESULT_OK) {
-                bt.setupService();
-                bt.startService(BluetoothState.DEVICE_OTHER);
-                bt.send("Text", true);
+                bluetoothSPP.setupService();
+                bluetoothSPP.startService(BluetoothState.DEVICE_OTHER);
+                bluetoothSPP.send("Text", true);
             }
         }
     }
@@ -187,7 +187,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onDestroy() {
         super.onDestroy();
 
-        bt.stopService(); // 앱 종료될 때 블루투스 중지
+        bluetoothSPP.stopService(); // 앱 종료될 때 블루투스 중지
     }
 
 
@@ -195,12 +195,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         // "설정" 버튼 클릭
-        if(v.getId() == R.id.settingBtn) {
+        if(v.getId() == R.id.settingButton) {
             Intent intent = new Intent(this, SettingActivity.class);
             startActivity(intent);
         }
         // "종료" 버튼 클릭
-        else if(v.getId() == R.id.exitBtn) {
+        else if(v.getId() == R.id.exitButton) {
             finish();
         }
         else {
@@ -212,12 +212,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public boolean onKeyDown(int keycode, KeyEvent event) {
         switch(keycode) {
             case KeyEvent.KEYCODE_VOLUME_DOWN:
-                if(volumeBar.getProgress() > 0)
-                    volumeBar.setProgress(volumeBar.getProgress() - 1);
+                if(currentVolumeSeekBar.getProgress() > 0)
+                    currentVolumeSeekBar.setProgress(currentVolumeSeekBar.getProgress() - 1);
                 break;
             case KeyEvent.KEYCODE_VOLUME_UP:
-                if(volumeBar.getProgress() < volumeBar.getMax())
-                    volumeBar.setProgress(volumeBar.getProgress() + 1);
+                if(currentVolumeSeekBar.getProgress() < currentVolumeSeekBar.getMax())
+                    currentVolumeSeekBar.setProgress(currentVolumeSeekBar.getProgress() + 1);
                 break;
         }
 

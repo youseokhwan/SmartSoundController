@@ -59,7 +59,7 @@
                 android:textColor="#000000" />
 
             <EditText
-                android:id="@+id/stdDbEdt"
+                android:id="@+id/standardDecibelEditText"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/tmonmonsori"
@@ -87,7 +87,7 @@
                 android:textColor="#000000" />
 
             <SeekBar
-                android:id="@+id/stdVolumeBar"
+                android:id="@+id/standardVolumeSeekBar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -116,7 +116,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/stdUnitEdt"
+                android:id="@+id/standardUnitEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -142,7 +142,7 @@
 
         <!-- 체크 박스 -->
         <CheckBox
-            android:id="@+id/vibCheckBox"
+            android:id="@+id/vibratorCheckBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -155,7 +155,7 @@
 
         <!-- 적용 버튼 -->
         <Button
-            android:id="@+id/applyBtn"
+            android:id="@+id/applyButton"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="35dp"
             android:layout_width="match_parent"
