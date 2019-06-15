@@ -8,23 +8,21 @@
 
 [youseokhwan](https://github.com/youseokhwan)
 
-## version
-
-v1.0.0
-
-## requirements
+## hardware requirements
 
 - Android Device
 - Arduino Uno(R3), Sound Sensor(SZH-EK033), Bluetooth HC-06 Module(SZH-EK010)
 
-## download & install
+## usage
 
-디바이스에 apk 파일 [다운로드](https://github.com/youseokhwan/SmartSoundController/blob/master/app-debug.apk?raw=true) 및 설치
+- Android Device에 apk 파일을 [다운로드](https://github.com/youseokhwan/SmartSoundController/blob/master/app-debug.apk?raw=true) 및 설치
+- 아두이노 보드의 블루투스 모듈(HC-06)과 Android Device를 페어링
+- 앱 실행 후 자신에 맞는 볼륨 값, dB 등 설정
 
 ## issues
 
 - 블루투스 페어링 화면 scan 버튼 미구현(미리 페어링 후 앱 실행해야 함)
-- 센서의 상태에 따라 측정값 부정확
+- 센서의 상태에 따라 측정값이 부정확할 수 있고, 정확한 dB값이 아닌 전압 값만을 이용해 계산한 임시적인 값
 - 백그라운드 동작 미구현
 
 ## notes
