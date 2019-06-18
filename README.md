@@ -35,3 +35,7 @@
 - 2019년 3-1학기 모바일프로그래밍 강의의 기말 프로젝트로 제출
 - 추후 아두이노없이 내장 마이크 센서로 구현할 계획
 - Galaxy S10e(SM-G970N)에서만 테스트하였습니다.
+
+## 🔑 license & copyright
+
+- font : TmonMonsori.ttf
